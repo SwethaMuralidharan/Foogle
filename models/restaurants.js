@@ -12,5 +12,5 @@ var restaurantsSchema = new Schema({
   OperationHours:[ String ],
   reviews: [ reviews.schema ],
 });
-var Restaurant = mongoose.model('Book', restaurantsSchema);
-module.exports = Restaurant;
+var Restaurants = mongoose.model('Restaurants', restaurantsSchema);
+module.exports = Restaurants;

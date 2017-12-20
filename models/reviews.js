@@ -6,9 +6,10 @@ var ReviewSchema = new Schema({
   username: String,
 },
 {
-  timestamps:true
+  // timestamps:true
+  timestamps: { createdAt: 'created_at' }
 }
 );
 
-var Review = mongoose.model('Review', ReviewSchema);
-module.exports = Review;
+var Reviews = mongoose.model('Reviews', ReviewSchema);
+module.exports = Reviews;
