@@ -34,6 +34,7 @@
 .space{
 padding-left: 25px;
 margin:10px;
+text-align: justify;
 }
 .header{
   padding-left: 25px;
@@ -49,5 +50,11 @@ textarea{
   margin:10px;
 }
 .btnpost{
-  margin-left: 600px;
+  margin-left:600px;
+}
+input_margin{
+  margin-left: 100px;
+}
+.form-inline{
+  margin-left: 500px;
 }
