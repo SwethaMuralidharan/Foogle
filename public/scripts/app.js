@@ -11,7 +11,7 @@ $(document).ready(function(){
     }
   })
 
-  function displayReviews(arrOfReviews) {
+  function displayReviews(restId, arrOfReviews) {
 
     var answer= arrOfReviews.map(function(review) {
       //return `<p class="space">  ${ review.review_text } - ${ review.username } [${ review.created_at }]</p>`;
@@ -21,10 +21,10 @@ $(document).ready(function(){
         <p class="space">  ${ review.review_text } - ${ review.username }</p>
         </div>
         <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary"> Update </button>
+        <button type="submit" class="btn btn-primary btnedit" data-review-id=${ review._id } data-rest-id=${restId}> Update </button>
         </div>
         <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary"> Delete </button>
+        <button type="submit" class="btn btn-primary btndelete" data-review-id=${ review._id } data-rest-id=${restId}> Delete </button>
         </div>
       </div>
       `
@@ -50,7 +50,7 @@ $(document).ready(function(){
          <hr>
          <p class="space"> <b>REVIEWS</b> </p>
 
-         <p class="space">  ${displayReviews(restaurants[i].reviews) } </p>
+         <p class="space">  ${displayReviews(restaurants[i]._id, restaurants[i].reviews) } </p>
 
          <form class="form-inlin addReviewForm" data-rest-id=${restaurants[i]._id}>
              <div class="form-group">
@@ -68,9 +68,27 @@ $(document).ready(function(){
       `)
     }
   }
+
   $("#results").on('click',".accordion",function(e){
     $('#results').find('[data-rest-id="' + $(this).attr('data-rest-id') + '"]').fadeIn();
   })
+
+
+   $("#results").on('click',".btndelete",function(e){
+     console.log("delete button clicked for review - id:",$(this).attr('data-review-id'));
+     console.log("delete button clicked for review - id:",$(this).attr('data-rest-id'));
+     $.ajax({
+       method:'DELETE',
+       url:'/api/restaurants/'+ $(this).attr('data-rest-id')+'/reviews/'+$(this).attr('data-review-id'),
+       success:handleDeleteSuccess,
+       error:function(err){
+         console.log("Error in deleting review ",err);
+       }
+     })
+   })
+   function handleDeleteSuccess(data){
+     console.log(data);
+   }
 
   $("#results").on('submit',".addReviewForm",function(e){
     e.preventDefault();
