@@ -87,7 +87,7 @@ $(document).ready(function(){
      })
    })
    function handleDeleteSuccess(data){
-     console.log(data);
+     alert("Review deleted");
    }
 
   $("#results").on('submit',".addReviewForm",function(e){
