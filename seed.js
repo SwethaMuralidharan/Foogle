@@ -23,7 +23,7 @@ var restaurants_list = [
     price_range: "moderate",
     serviceTime: "45 min",
     cuisine: "French",
-    OperationHours: [ "Mon-Fri : 11:30am to 11pm", "Sat-Sun : 10:30am to 11pm" ]
+    OperationHours: [ "Mon-Fri : 11:30am to 11pm", " Sat-Sun : 10:30am to 11pm" ]
    },
    {
     name: "Villa Taverna",
@@ -47,7 +47,7 @@ var restaurants_list = [
     price_range: "moderate",
     serviceTime: "10 min",
     cuisine: "Indian",
-    OperationHours: [ "Sun-Thurs : 11:30am to 10pm", "Fri-Sat : 11:30am to 10:30pm" ]
+    OperationHours: [ "Sun-Thurs : 11:30am to 10pm " , " Fri-Sat : 11:30am to 10:30pm" ]
     },
     {
     name: "Hakkasan",
@@ -55,7 +55,7 @@ var restaurants_list = [
     price_range: "moderate",
     serviceTime: "45 min",
     cuisine: "Chinese",
-    OperationHours: [ "Mon-Sat : 11:30am to 10pm", "Sun : Closed" ]
+    OperationHours: [ "Mon-Sat : 11:30am to 10pm ", " Sun : Closed" ]
     },
     {
     name: "Pica Pica Arepa Kitchen",
@@ -63,7 +63,7 @@ var restaurants_list = [
     price_range: "moderate",
     serviceTime: "15 min",
     cuisine: "Peruvian",
-    OperationHours: [ "Sun-Thur : 11am to 9pm",  "Fri-Sat : 11am to 10pm" ]
+    OperationHours: [ "Sun-Thur : 11am to 9pm ",  " Fri-Sat : 11am to 10pm" ]
     },
     {
     name: "Piccadilly Fish & Chips",
@@ -79,7 +79,7 @@ var restaurants_list = [
     price_range: "cheap",
     serviceTime: "10 min",
     cuisine: "Brazillian",
-    OperationHours: [ "Mon-Fri : 8am to 7pm", "Sat: 9am to 2:30pm" ]
+    OperationHours: [ "Mon-Fri : 8am to 7pm ", " Sat: 9am to 2:30pm" ]
     }
 
   ]
@@ -114,7 +114,6 @@ db.Restaurants.remove({}, function(err, restaurants){
           return console.log(err);
         }
         console.log(savedrestaurant);
-        process.exit();
        });
    });
  });

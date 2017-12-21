@@ -1,11 +1,38 @@
 
-/*body{
-  /*background:url("http://foodporndaily.com/pictures/juicy-seared-salmon-sandwich-with-creamy-basil-pesto-and-grilled-glazed-zucchini-on-turkish-bread.jpg");*/
-  /*background:url("https://www.rd.com/wp-content/uploads/2017/10/03_Memorize-these-Potluck-Etiquette-Rules-Before-Your-Next-Party_531679561_KucherAV-760x506.jpg");
-  background-size:cover;
-  height:100%;*/
+
 .jumbotron{
   color:#ffffff;
   background-image: url("/images/bg.jpg");
   background-size: cover;
+
+}
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size:25px;
+    transition: 0.4s;
+    padding: 10px;
+  }
+#results{
+  overflow:auto;
+
+}
+.toggle{
+  display:none;
+  background-color: #e8e9ea;
+  font-size: 20px;
+}
+
+.space{
+padding-left: 25px;
+
+}
+.header{
+  padding-left: 25px;
+  text-decoration: underline;
 }
