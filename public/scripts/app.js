@@ -56,7 +56,7 @@ $(document).ready(function(){
          <p class="space"> <b>REVIEWS</b> </p>
 
          <p class="space">  ${displayReviews(restaurants[i]._id, restaurants[i].reviews) } </p>
-
+         
          <form class="form-inlin addReviewForm" data-rest-id=${restaurants[i]._id}>
              <div class="form-group">
 
@@ -75,7 +75,9 @@ $(document).ready(function(){
   }
 
   $("#results").on('click',".accordion",function(e){
+
     $('#results').find('[data-rest-id="' + $(this).attr('data-rest-id') + '"]').fadeIn();
+
   })
 
 
@@ -102,6 +104,7 @@ $(document).ready(function(){
      let value1="review_text=" +$(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').find("input")[0].value;
      let value2="username=" + $(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').find("input")[1].value;
      newvalues=value1+"&"+value2;
+     $(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').hide();
      $.ajax({
        method:'PUT',
        url:'/api/restaurants/'+ $(this).attr('data-rest-id')+'/reviews/'+$(this).attr('data-review-id'),
@@ -114,7 +117,7 @@ $(document).ready(function(){
 
    })
    function handleUpdateSuccess(data){
-     
+     alert("Updated review")
    }
   $("#results").on('submit',".addReviewForm",function(e){
     e.preventDefault();

@@ -10,13 +10,16 @@
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    width: 100%;
+    align-content: center;
+    width: 80%;
     border: none;
     text-align: center;
     outline: none;
     font-size:25px;
     transition: 0.4s;
     padding: 10px;
+    margin-left:120px;
+
   }
 
 #results{
@@ -25,10 +28,14 @@
 }
 .toggle{
   display:none;
-  background-color: #e8e9ea;
+  /*background-color: #e8e9ea;*/
+  background-color: #999068;
   font-size: 20px;
   border-style: ridge;
   border-radius:25px;
+  width: 80%;
+  margin-left:120px;
+
 }
 
 .space{
@@ -50,7 +57,7 @@ textarea{
   margin:10px;
 }
 .btnpost{
-  margin-left:600px;
+  margin-left:500px;
 }
 input_margin{
   margin-left: 100px;
@@ -60,4 +67,5 @@ input_margin{
 }
 .edit-input {
   display:none;
+  padding-left: 10px;
 }
