@@ -58,3 +58,6 @@ input_margin{
 .form-inline{
   margin-left: 500px;
 }
+.edit-input {
+  display:none;
+}

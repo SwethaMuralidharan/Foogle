@@ -18,13 +18,18 @@ $(document).ready(function(){
       return `
       <div class="row">
         <div class="col-sm-6">
-        <p class="space">  ${ review.review_text } - ${ review.username }</p>
+              <p class="space">  ${ review.review_text } - ${ review.username }</p>
+              <span class="edit-input" data-review-id=${ review._id }>
+                <input type="text" name="review_text" value="${review.review_text}"/>
+                <input type="text" name="username" value="${review.username}"/>
+                <button class="edit-review-submit-button" data-review-id="${review._id}" data-rest-id=${restId}> Save </button>
+              </span>
         </div>
         <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary btnedit" data-review-id=${ review._id } data-rest-id=${restId}> Update </button>
+            <button type="submit" class="btn btn-primary btnedit" data-review-id=${ review._id } data-rest-id=${restId}> Update </button>
         </div>
         <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary btndelete" data-review-id=${ review._id } data-rest-id=${restId}> Delete </button>
+            <button type="submit" class="btn btn-primary btndelete" data-review-id=${ review._id } data-rest-id=${restId}> Delete </button>
         </div>
       </div>
       `
@@ -89,7 +94,28 @@ $(document).ready(function(){
    function handleDeleteSuccess(data){
      alert("Review deleted");
    }
+   $("#results").on('click',".btnedit",function(e){
+     $(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').show();
+   })
 
+   $("#results").on('click',".edit-review-submit-button",function(){
+     let value1="review_text=" +$(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').find("input")[0].value;
+     let value2="username=" + $(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').find("input")[1].value;
+     newvalues=value1+"&"+value2;
+     $.ajax({
+       method:'PUT',
+       url:'/api/restaurants/'+ $(this).attr('data-rest-id')+'/reviews/'+$(this).attr('data-review-id'),
+       data:newvalues,
+       success:handleUpdateSuccess,
+       error:function(err){
+         console.log("update error",err);
+       }
+     })
+
+   })
+   function handleUpdateSuccess(data){
+     
+   }
   $("#results").on('submit',".addReviewForm",function(e){
     e.preventDefault();
     console.log($(this).serialize());
