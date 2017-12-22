@@ -56,7 +56,7 @@ $(document).ready(function(){
          <p class="space"> <b>REVIEWS</b> </p>
 
          <p class="space">  ${displayReviews(restaurants[i]._id, restaurants[i].reviews) } </p>
-         
+
          <form class="form-inlin addReviewForm" data-rest-id=${restaurants[i]._id}>
              <div class="form-group">
 
@@ -75,8 +75,8 @@ $(document).ready(function(){
   }
 
   $("#results").on('click',".accordion",function(e){
-
-    $('#results').find('[data-rest-id="' + $(this).attr('data-rest-id') + '"]').fadeIn();
+    $(this).parent().siblings(".toggle").fadeOut();//hides all other restaurants
+    $('#results').find('[data-rest-id="' + $(this).attr('data-rest-id') + '"]').fadeIn();// shows selected restaurant
 
   })
 
