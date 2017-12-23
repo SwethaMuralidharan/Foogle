@@ -24,7 +24,6 @@ app.post('/api/restaurants/:rest_id/reviews', function (req, res){
     if(err) { console.log(err); }
     else if(foundrestaurant===null){  res.status(404).json({error:"No restaurant found by this ID"}); }
     else {    foundrestaurant.reviews.push(req.body); }
-
     foundrestaurant.save();
     res.json(foundrestaurant);
     })
@@ -46,6 +45,7 @@ app.delete('/api/restaurants/:restaurant_id/reviews/:review_id', function(req,re
 
   })
 })
+
 app.put('/api/restaurants/:restaurant_id/reviews/:review_id',function(req,res){
   var review_id=req.params.review_id;
   var restaurant_id=req.params.restaurant_id;
@@ -55,17 +55,16 @@ app.put('/api/restaurants/:restaurant_id/reviews/:review_id',function(req,res){
       console.log("error in deleting reviews ",err)
     }
     else{
-      var updated_review=foundrestaurant.reviews.id(review_id);
-      if(updated_review){
-        updated_review.username=req.body.username;
-        updated_review.review_text=req.body.review_text;
-        foundrestaurant.save(function(err,saved){
-          console.log("updated review",updated_review);
-          res.json(updated_review);
-        })
-      }
-
-    }
+          var updated_review=foundrestaurant.reviews.id(review_id);
+          if(updated_review){
+             updated_review.username=req.body.username;
+             updated_review.review_text=req.body.review_text;
+             foundrestaurant.save(function(err,saved){
+               console.log("updated review",updated_review);
+               res.json(updated_review);
+            })
+          }
+        }
   })
 })
 

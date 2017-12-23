@@ -67,5 +67,14 @@ input_margin{
 }
 .edit-input {
   display:none;
-  padding-left: 10px;
+}
+.edit-review-submit-button{
+  margin-left: 80px;
+
+}
+label{
+  margin: 10px;
+}
+.inputtag{
+  margin-left:10px;
 }
