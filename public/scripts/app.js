@@ -1,11 +1,13 @@
 console.log("Sanity Check");
 
 $(document).ready(function(){
+  var allrestaurants = [];
 
   $.ajax({
     method:'GET',
     url:'/api/restaurants',
-    success:displayRestaurants,
+    //success:displayRestaurants,
+    success:handleSuccess,
     error:function(err){
       console.log("Error in getting all restaurants from database",err);
     }
@@ -17,6 +19,7 @@ $(document).ready(function(){
   })
 
   $("#results").on('submit',".addReviewForm",function(e){
+    console.log($(this).serialize());
     e.preventDefault();
     $.ajax({
       method:'POST',
@@ -68,14 +71,27 @@ $(document).ready(function(){
    function handleDeleteSuccess(data){
       alert("Review deleted");
    }
+
    function handleUpdateSuccess(data){
      alert("Updated review")
    }
+
    function handleNewReview(restaurant_info){
-    alert("Thanks for Reviewing!");
-    $('textarea').val('');
+     var res = restaurant_info;
+     var restId = res._id;
+     // find the restaurant with the correct ID and update it with the new review
+     for(var index = 0; index < allrestaurants.length; index++) {
+       if(allrestaurants[index]._id === restId) {
+         allrestaurants[index] = res;
+         break;
+       }
+     }
+     displayRestaurants(allrestaurants);
+     $('#results').find('[data-rest-id="' + restId + '"]').fadeIn();// shows selected restaurant
    }
+
    function displayRestaurants(restaurants){
+    $("#results").empty();
     for(i=0;i<restaurants.length;i++){
       $("#results").append(`
         <p class="restaurant" data-rest-id=${restaurants[i]._id}>
@@ -93,19 +109,16 @@ $(document).ready(function(){
 
          <p class="space">  ${displayReviews(restaurants[i]._id, restaurants[i].reviews) } </p>
 
-         <form class="form-inlin addReviewForm" data-rest-id=${restaurants[i]._id}>
-             <div class="form-group">
-                <textarea rows="1" cols="20" class="input_margin"  name="username">
-                  Name
-                 </textarea>
-                 <textarea rows="4" cols="50" name="review_text">
-                 Post your review about this restaurant here.
-                 </textarea>
-             </div>
+         <form class="form-inline addReviewForm" data-rest-id=${restaurants[i]._id}>
+         <div class="form-group">
+             <textarea name="username" class="name"  placeholder="Name" required></textarea>
+             <textarea name = "review_text"  class="comment"  placeholder = "Post your review here for this restaurant" required ></textarea>
              <button type="submit" class="btn btn-primary btnpost">Post a Review</button>
+        </div>
          </form>
           </div>
       `)
+
     }
   }
 
@@ -134,4 +147,9 @@ $(document).ready(function(){
     });
     return answer.join("");
   }
+  function handleSuccess(json) {
+    allrestaurants = json;
+    displayRestaurants(allrestaurants);
+  }
+
 })

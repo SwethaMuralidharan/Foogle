@@ -1,10 +1,8 @@
 
-
 .jumbotron{
   color:#ffffff;
   background-image: url("/images/bg.jpg");
   background-size: cover;
-
 }
 .accordion {
     background-color: #eee;
@@ -19,12 +17,9 @@
     transition: 0.4s;
     padding: 10px;
     margin-left:120px;
-
   }
-
 #results{
   overflow:auto;
-
 }
 .toggle{
   display:none;
@@ -35,9 +30,7 @@
   border-radius:25px;
   width: 80%;
   margin-left:120px;
-
 }
-
 .space{
 padding-left: 25px;
 margin:10px;
@@ -57,13 +50,12 @@ textarea{
   margin:10px;
 }
 .btnpost{
-  margin-left:500px;
+  margin-left:250px;
 }
-input_margin{
-  margin-left: 100px;
-}
+
 .form-inline{
-  margin-left: 500px;
+  margin-left: 200px;
+  padding:10px;
 }
 .edit-input {
   display:none;
@@ -77,4 +69,19 @@ label{
 }
 .inputtag{
   margin-left:10px;
+}
+.name{
+margin-left: 20px;
+box-shadow: 0 2px 0 #e6e6e6;
+height: 40px;
+padding-left: 10px;
+width: 500px;
+}
+.comment{
+margin-left: 20px;
+box-shadow: 0 2px 0 #e6e6e6;
+height: 40px;
+padding-left: 10px;
+width: 600px;
+height: 100px;
 }
