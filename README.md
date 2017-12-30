@@ -22,8 +22,6 @@ Step 3: Serve static files from Express.
 
 Step 4: Setting up database file structure.  
 
-Step 5: Setting up a "controller" pattern to organize routes.  
-
 
 *Story:*  
 
@@ -44,7 +42,7 @@ User can click on restaurant name to expand each restaurant’s section and see 
 
 **POST A REVIEW**  
 
-We can implement post review functions.
+Implementing post review functionality.
 
 *Story:*  
 
@@ -56,11 +54,11 @@ Submitting a review will make the review show up on the page.
 
 **UPDATE A REVIEW**  
 
-There will be a label with review.
+There will be a update button along with each of the reviews.
 
 *Story:*  
 
-The user will be able to see an update button next to each of the reviews. Clicking on the update button will transform the label text into a text box now the user can update the review and click the save button to save changes.
+The user will be able to see an update button next to each of the reviews. Clicking on the update button will transform the label review text into a text box with contents as review text and username. Now the user can update the review and click the save button to save changes.
 
 **SPRINT 4:**
 
