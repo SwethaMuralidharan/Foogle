@@ -6,7 +6,6 @@ $(document).ready(function(){
   $.ajax({
     method:'GET',
     url:'/api/restaurants',
-    //success:displayRestaurants,
     success:handleSuccess,
     error:function(err){
       console.log("Error in getting all restaurants from database",err);
@@ -72,8 +71,22 @@ $(document).ready(function(){
       alert("Review deleted");
    }
 
-   function handleUpdateSuccess(data){
-     alert("Updated review")
+   function handleUpdateSuccess(updatedreview){
+     var review = updatedreview;
+     var reviewID = review._id;
+     var restId;
+     // find the review with the correct ID and update it with the updated review
+     for(var index = 0; index < allrestaurants.length; index++) {
+       for(var j=0;j<allrestaurants[index].reviews.length;j++) {
+         if(allrestaurants[index].reviews[j]._id === reviewID) {
+           restId=allrestaurants[index]._id;
+           allrestaurants[index].reviews[j] = review;
+           break;
+         }
+       }
+     }
+     displayRestaurants(allrestaurants);
+     $('#results').find('[data-rest-id="' + restId + '"]').fadeIn();// shows selected restaurant
    }
 
    function handleNewReview(restaurant_info){
@@ -147,6 +160,7 @@ $(document).ready(function(){
     });
     return answer.join("");
   }
+
   function handleSuccess(json) {
     allrestaurants = json;
     displayRestaurants(allrestaurants);
