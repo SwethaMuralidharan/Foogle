@@ -124,7 +124,7 @@ $(document).ready(function(){
          <div class="toggle" data-rest-id=${restaurants[i]._id}>
 
          <p class="space"> Name :  ${restaurants[i].name} </p>
-         <p class="space"> Cuisine : <b> ${restaurants[i].cuisine} </b> </p>
+         <p class="cuisine"> Cuisine : <b> ${restaurants[i].cuisine} </b> </p>
          <p class="space"> Location : ${restaurants[i].location} </p>
          <p class="space"> Price Range : ${restaurants[i].price_range} </p>
          <p class="space"> Service Time : ${restaurants[i].serviceTime} </p>
@@ -183,5 +183,27 @@ $(document).ready(function(){
     $("#results > p.restaurant").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
+    if (!this.value) {
+      $("#txtSearch").val('');
+      displayRestaurants(allrestaurants);
+    }
   });
+
+  $("#txtSearchbyCuisine").on("click",function(){
+   var value = $("#cuisineSearch").val().toLowerCase();
+    for(i=0;i<allrestaurants.length;i++){
+      if(allrestaurants[i].cuisine.toLowerCase()==value){
+        $("#results > p.restaurant").fadeOut();
+        $('#results').find('[data-rest-id="' + allrestaurants[i]._id + '"]').fadeIn();
+      }
+    }
+  })
+
+  $("#cuisineSearch").on("keyup",function(){
+    if (!this.value) {
+    $("#cuisineSearch").val('');
+    displayRestaurants(allrestaurants);
+  }
+
+  })
 })

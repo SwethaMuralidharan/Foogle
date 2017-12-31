@@ -35,6 +35,7 @@ padding-left: 25px;
 margin:10px;
 text-align: justify;
 }
+
 .header{
   padding-left: 25px;
   text-decoration: underline;
@@ -67,6 +68,11 @@ label{
 .inputtag{
   margin-left:10px;
 }
+.cuisine{
+  padding-left: 25px;
+  margin:10px;
+  text-align: justify;
+}
 .name{
 margin-left: 20px;
 box-shadow: 0 2px 0 #e6e6e6;
@@ -81,4 +87,13 @@ height: 40px;
 padding-left: 10px;
 width: 600px;
 height: 100px;
+}
+.searchcontainer{
+  border:1px solid black;
+  background-color: #bcc1b2;
+  border-style: ridge;
+  border-radius:15px;
+}
+.form-control{
+  margin:10px 0px;
 }
