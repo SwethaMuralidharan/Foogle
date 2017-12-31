@@ -67,8 +67,19 @@ $(document).ready(function(){
    })
 
 
-   function handleDeleteSuccess(data){
-      alert("Review deleted");
+   function handleDeleteSuccess(restaurant_info){
+     var res = restaurant_info;
+     var restId = res._id;
+
+     // find the restaurant with the correct ID and show reviews except the deleted one.
+     for(var index = 0; index < allrestaurants.length; index++) {
+       if(allrestaurants[index]._id === restId) {
+         allrestaurants[index] = res;
+         break;
+       }
+     }
+     displayRestaurants(allrestaurants);
+     $('#results').find('[data-rest-id="' + restId + '"]').fadeIn();// shows selected restaurant
    }
 
    function handleUpdateSuccess(updatedreview){
