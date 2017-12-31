@@ -77,24 +77,31 @@ The user can click on the delete button which will destroy the review.
 
 **SEARCH BY NAME**  
 
-There will be a search bar located at the top of the page.
+There will be a search bar located at the top of the page for searching by restaurant name.
 
 *Story:*
 
 The user can type the name of the restaurant and the corresponding details will be displayed.
 User will be able to perform post/update/delete reviews for that restaurant.
 
+All other restaurants and its details will be hidden.
+
+Emptying this search bar will display all restaurants.
+
 **SPRINT 6:**
 
 **SEARCH BY CUISINE**  
 
-There will be a dropdown menu where the user can also now search by which cuisine.
+There will be another search bar at the top of the page for searching by cuisine.
 
 *Story:*
 
-When the user decides to search by cuisine, a text box appears below the dropdown menu where they can key in specific cuisine names (ex Japanese, Italian, Mexican, etc). Once user keys in the cuisine name a list of restaurants of that cuisine are displayed below the text box.
-All other restaurants and its details are hidden.
+The user can type the cuisine name and the corresponding details will be displayed.
+User will be able to perform post/update/delete reviews for that restaurant.
 
+All other restaurants and its details will be hidden.
+
+Emptying this search bar will display all restaurants.
 
 **SPRINT 7:**
 
