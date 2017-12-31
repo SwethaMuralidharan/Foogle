@@ -1,10 +1,10 @@
-
+/*custom styles*/
 .jumbotron{
   color:#ffffff;
   background-image: url("/images/bg.jpg");
   background-size: cover;
 }
-.accordion {
+.accordion{
     background-color: #eee;
     color: #444;
     cursor: pointer;
@@ -23,7 +23,6 @@
 }
 .toggle{
   display:none;
-  /*background-color: #e8e9ea;*/
   background-color: #999068;
   font-size: 20px;
   border-style: ridge;
@@ -52,7 +51,6 @@ textarea{
 .btnpost{
   margin-left:250px;
 }
-
 .form-inline{
   margin-left: 200px;
   padding:10px;
@@ -62,7 +60,6 @@ textarea{
 }
 .edit-review-submit-button{
   margin-left: 80px;
-
 }
 label{
   margin: 10px;

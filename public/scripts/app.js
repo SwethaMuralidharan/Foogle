@@ -1,6 +1,7 @@
 console.log("Sanity Check");
 
 $(document).ready(function(){
+
   var allrestaurants = [];
 
   $.ajax({
@@ -119,7 +120,7 @@ $(document).ready(function(){
     for(i=0;i<restaurants.length;i++){
       $("#results").append(`
         <p class="restaurant" data-rest-id=${restaurants[i]._id}>
-        <button class="accordion" data-rest-id=${restaurants[i]._id}> ${restaurants[i].name} </button></p>
+        <button class="accordion"  data-rest-id=${restaurants[i]._id}> ${restaurants[i].name} </button></p>
          <div class="toggle" data-rest-id=${restaurants[i]._id}>
 
          <p class="space"> Name :  ${restaurants[i].name} </p>
@@ -177,4 +178,10 @@ $(document).ready(function(){
     displayRestaurants(allrestaurants);
   }
 
+  $("#txtSearch").on("keyup", function() {
+    var value = $("#txtSearch").val().toLowerCase();
+    $("#results > p.restaurant").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 })

@@ -8,12 +8,12 @@
 
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
   <link rel="stylesheet" href="/styles/styles.css">
   <link rel="shortcut icon" href="/images/favicon.ico">
   <!-- VENDOR SCRIPTS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- APPLICATION SCRIPTS -->
   <script src="/scripts/app.js"></script>
 
@@ -25,6 +25,22 @@
         <h2> Google for Food </h2>
       </div>
     </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search by Name" id="txtSearch"/>
+                      <div class="input-group-btn">
+                        <button class="btn btn-info" type="button" id="txtSearchbyName">
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                      </div>
+                    </div>
+            </div>  
+      </div>
+  </div>
+
     <div id="results">
     </div>
 </body>
