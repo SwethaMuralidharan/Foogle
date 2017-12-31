@@ -5,7 +5,7 @@
   background-size: cover;
 }
 .accordion{
-    background-color: #eee;
+    background-color: #a9a9aa;
     color: #444;
     cursor: pointer;
     align-content: center;
@@ -20,6 +20,10 @@
   }
 #results{
   overflow:auto;
+  background-color: #d6d8db;
+}
+.restaurants{
+  margin:5px;
 }
 .toggle{
   display:none;
@@ -95,5 +99,5 @@ height: 100px;
   border-radius:15px;
 }
 .form-control{
-  margin:10px 0px;
+  margin:10px 2px;
 }
