@@ -125,8 +125,8 @@ $(document).ready(function(){
          <div class="toggle" data-rest-id=${restaurants[i]._id}>
 
          <div class="wrapper">
-         <button type="button" class="btn btn-light editButton"><i class="far fa-edit fa-lg"></i></button>
-         <button type="button" class="btn btn-light deleteButton"><i id="delete" class="far fa-trash-alt fa-lg"></i></button>
+         <button type="button" data-rest-id=${restaurants[i]._id} class="btn btn-light editButton"><i class="far fa-edit fa-lg"></i></button>
+         <button type="button" data-rest-id=${restaurants[i]._id} class="btn btn-light deleteButton"><i class="far fa-trash-alt fa-lg"></i></button>
          </div>
 
          <p class="space"> Name :  ${restaurants[i].name} </p>
@@ -215,8 +215,8 @@ $(document).ready(function(){
   $("#addnew").on("click",function(){
     $('#NewModal').modal();
   })
+
   $('#saveRestaurant').on('click', function(e) {
-    console.log('in handleNewRestaurantSubmit function');
   e.preventDefault();
   var $modal = $('#NewModal');
   var $NameField = $modal.find('#Name');
@@ -226,10 +226,6 @@ $(document).ready(function(){
   var $PriceRangeField = $modal.find('#PriceRange');
   var $OperationHoursField = $modal.find('#OperationHours');
 
-  // var albumId = $modal.data('albumId');
-
-  // get data from modal fields
-  // note the server expects the keys to be 'name', 'trackNumber' so we use those.
   var postData = {
     name: $NameField.val(),
     location: $LocationField.val(),
@@ -250,21 +246,29 @@ $(document).ready(function(){
       displayRestaurants(allrestaurants);
     }
   })
-  // var PostUrl = '/api/restaurants';
-  // $.post(PostUrl, postData, function(data) {
-  //   $modal.modal('hide');
-  //
-  //   // $songNameField.val('');
-  //   // $trackNumberField.val('');
-  //   //
-  //   // var albumGetUrl = '/api/albums/' + albumId;
-  //   // $.get(albumGetUrl, function(updatedAlbum) {
-  //   //   // remove current instance of album
-  //   //   $('[data-album-id=' + albumId + ']').remove();
-  //   //
-  //   //   // re-render album with new songs
-  //   //   renderAlbum(updatedAlbum);
-  //   });
-  })
 
+  })
+  $("#results").on('click',".deleteButton",function(){
+    var url='/api/restaurants/'+$(this).attr('data-rest-id');
+    console.log(url);
+    $.ajax({
+      method: 'delete',
+      url: '/api/restaurants/'+$(this).attr('data-rest-id'),
+      success: deleteRestaurantSuccess,
+      error: function(err){
+        console.log("Error in deleting restaurant from the database.")
+      }
+    });
+  })
+  function deleteRestaurantSuccess(json) {
+    var Restaurant = json;
+    var RestaurantId = Restaurant._id;
+    for(var index = 0; index < allrestaurants.length; index++) {
+      if(allrestaurants[index]._id === RestaurantId) {
+        allrestaurants.splice(index, 1);
+        break;
+      }
+    }
+    displayRestaurants(allrestaurants);
+  }
 })

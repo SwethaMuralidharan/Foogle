@@ -24,7 +24,12 @@ app.post('/api/restaurants',function(req,res){
     res.json(rest);
   });
 })
-
+app.delete('/api/restaurants/:id',function(req,res){
+  var restID = req.params.id;
+  db.Restaurants.findOneAndRemove({ _id: restID }, function (err, deletedRest) {
+    res.json(deletedRest);
+  });
+})
 app.post('/api/restaurants/:rest_id/reviews', function (req, res){
   db.Restaurants.findById(req.params.rest_id)
   .exec(function(err,foundrestaurant){
