@@ -23,7 +23,7 @@
   background-color: #d6d8db;
 }
 .restaurants{
-  margin:5px;
+
 }
 .toggle{
   display:none;
@@ -100,4 +100,7 @@ height: 100px;
 }
 .form-control{
   margin:10px 2px;
+}
+.wrapper{
+  text-align: right;
 }

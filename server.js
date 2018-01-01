@@ -17,6 +17,14 @@ app.get('/api/restaurants',function(req,res){
   })
 })
 
+app.post('/api/restaurants',function(req,res){
+  console.log(JSON.stringify(req.body));
+  db.Restaurants.create(req.body, function(err, rest) {
+    if (err) { console.log('error occured in create restaurant method', err); }
+    res.json(rest);
+  });
+})
+
 app.post('/api/restaurants/:rest_id/reviews', function (req, res){
   db.Restaurants.findById(req.params.rest_id)
   .exec(function(err,foundrestaurant){

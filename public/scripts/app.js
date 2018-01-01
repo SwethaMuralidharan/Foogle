@@ -120,8 +120,14 @@ $(document).ready(function(){
     for(i=0;i<restaurants.length;i++){
       $("#results").append(`
         <p class="restaurant" data-rest-id=${restaurants[i]._id}>
-        <button class="accordion"  data-rest-id=${restaurants[i]._id}> ${restaurants[i].name} </button></p>
+        <button class="accordion"  data-rest-id=${restaurants[i]._id}> ${restaurants[i].name}
+        </button></p>
          <div class="toggle" data-rest-id=${restaurants[i]._id}>
+
+         <div class="wrapper">
+         <button type="button" class="btn btn-light editButton"><i class="far fa-edit fa-lg"></i></button>
+         <button type="button" class="btn btn-light deleteButton"><i id="delete" class="far fa-trash-alt fa-lg"></i></button>
+         </div>
 
          <p class="space"> Name :  ${restaurants[i].name} </p>
          <p class="cuisine"> Cuisine : <b> ${restaurants[i].cuisine} </b> </p>
@@ -204,6 +210,61 @@ $(document).ready(function(){
     $("#cuisineSearch").val('');
     displayRestaurants(allrestaurants);
   }
-
   })
+
+  $("#addnew").on("click",function(){
+    $('#NewModal').modal();
+  })
+  $('#saveRestaurant').on('click', function(e) {
+    console.log('in handleNewRestaurantSubmit function');
+  e.preventDefault();
+  var $modal = $('#NewModal');
+  var $NameField = $modal.find('#Name');
+  var $CuisineField = $modal.find('#Cuisine');
+  var $LocationField = $modal.find('#Location');
+  var $ServiceTimeField = $modal.find('#ServiceTime');
+  var $PriceRangeField = $modal.find('#PriceRange');
+  var $OperationHoursField = $modal.find('#OperationHours');
+
+  // var albumId = $modal.data('albumId');
+
+  // get data from modal fields
+  // note the server expects the keys to be 'name', 'trackNumber' so we use those.
+  var postData = {
+    name: $NameField.val(),
+    location: $LocationField.val(),
+    price_range: $PriceRangeField.val(),
+    serviceTime: $ServiceTimeField.val(),
+    cuisine: $CuisineField.val(),
+    OperationHours: $OperationHoursField.val()
+  };
+
+  // POST to SERVER
+  console.log(postData);
+  $.ajax({
+    method:'POST',
+    url:'/api/restaurants',
+    data:postData,
+    success:function(data){
+      allrestaurants.push(data);
+      displayRestaurants(allrestaurants);
+    }
+  })
+  // var PostUrl = '/api/restaurants';
+  // $.post(PostUrl, postData, function(data) {
+  //   $modal.modal('hide');
+  //
+  //   // $songNameField.val('');
+  //   // $trackNumberField.val('');
+  //   //
+  //   // var albumGetUrl = '/api/albums/' + albumId;
+  //   // $.get(albumGetUrl, function(updatedAlbum) {
+  //   //   // remove current instance of album
+  //   //   $('[data-album-id=' + albumId + ']').remove();
+  //   //
+  //   //   // re-render album with new songs
+  //   //   renderAlbum(updatedAlbum);
+  //   });
+  })
+
 })
