@@ -118,11 +118,16 @@ $(document).ready(function(){
      }
   })
 
-  $("#cuisineSearch").on("keyup",function(){
-     if (!this.value) {
-     $("#cuisineSearch").val('');
-     displayRestaurants(allrestaurants);
-   }
+  $("#cuisineSearch").on("input",function(){
+    var searchTerm = this.value.toLowerCase();
+    if (searchTerm) {
+      $("#results > p.restaurant").each(function() {
+        // toggle based on whether text contains the search term
+        $(this).toggle($(this.nextElementSibling).find(".rest-cuisine").text().toLowerCase().indexOf(searchTerm) > -1)
+      });
+    } else {
+        displayRestaurants(allrestaurants);
+    }
   })
 
   $("#addnew").on("click",function(){
