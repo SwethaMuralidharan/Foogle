@@ -30,6 +30,22 @@ app.delete('/api/restaurants/:id',function(req,res){
     res.json(deletedRest);
   });
 })
+app.put('/api/restaurants/:id',function(req, res) {
+  db.Restaurants.findById(req.params.id, function(err, foundAlbum) {
+    if (err) { console.log('albumsController.update error', err); }
+    foundAlbum.location = req.body.location;
+    foundAlbum.price_range = req.body.price_range;
+    foundAlbum.OperationHours = req.body.OperationHours;
+    foundAlbum.serviceTime = req.body.serviceTime;
+    foundAlbum.name = req.body.name;
+    foundAlbum.cuisine = req.body.cuisine;
+    foundAlbum.save(function(err, savedAlbum) {
+      if (err) { console.log('saving altered album failed'); }
+      res.json(savedAlbum);
+    });
+  });
+})
+
 app.post('/api/restaurants/:rest_id/reviews', function (req, res){
   db.Restaurants.findById(req.params.rest_id)
   .exec(function(err,foundrestaurant){

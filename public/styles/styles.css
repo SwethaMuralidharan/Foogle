@@ -22,9 +22,6 @@
   overflow:auto;
   background-color: #d6d8db;
 }
-.restaurants{
-
-}
 .toggle{
   display:none;
   background-color: #999068;
@@ -103,4 +100,11 @@ height: 100px;
 }
 .wrapper{
   text-align: right;
+}
+.input-group{
+  margin-left: 20px;
+  text-align: center;
+}
+.input-group-btn{
+  text-align: center;
 }

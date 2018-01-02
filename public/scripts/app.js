@@ -125,16 +125,21 @@ $(document).ready(function(){
          <div class="toggle" data-rest-id=${restaurants[i]._id}>
 
          <div class="wrapper">
-         <button type="button" data-rest-id=${restaurants[i]._id} class="btn btn-light editButton"><i class="far fa-edit fa-lg"></i></button>
-         <button type="button" data-rest-id=${restaurants[i]._id} class="btn btn-light deleteButton"><i class="far fa-trash-alt fa-lg"></i></button>
+          <button type="button" data-rest-id=${restaurants[i]._id} class="btn btn-light editButton"><i class="far fa-edit fa-lg"></i></button>
+          <button type="button" data-rest-id=${restaurants[i]._id} class="btn btn-light deleteButton"><i class="far fa-trash-alt fa-lg"></i></button>
          </div>
 
-         <p class="space"> Name :  ${restaurants[i].name} </p>
-         <p class="cuisine"> Cuisine : <b> ${restaurants[i].cuisine} </b> </p>
-         <p class="space"> Location : ${restaurants[i].location} </p>
-         <p class="space"> Price Range : ${restaurants[i].price_range} </p>
-         <p class="space"> Service Time : ${restaurants[i].serviceTime} </p>
-         <p class="space"> OperationHours : ${restaurants[i].OperationHours} </p>
+         <p class="space"> Name :  <span class='rest-name'> ${ restaurants[i].name } </span> </p>
+         <p class="cuisine"> Cuisine : <b> <span class='rest-cuisine'> ${ restaurants[i].cuisine } </span> </b> </p>
+         <p class="space"> Location : <span class='rest-location'> ${ restaurants[i].location } </span>  </p>
+         <p class="space"> Price Range : <span class='rest-price'> ${ restaurants[i].price_range } </span>  </p>
+         <p class="space"> Service Time : <span class='rest-service'> ${ restaurants[i].serviceTime } </span>  </p>
+         <p class="space"> OperationHours : <span class='rest-hours'> ${ restaurants[i].OperationHours } </span>  </p>
+
+         <div class="wrapper">
+          <button class='btn btn-info save-restaurant hidden'>Save Changes</button>
+         </div>
+
          <hr>
          <p class="space"> <b>REVIEWS</b> </p>
 
@@ -244,13 +249,18 @@ $(document).ready(function(){
     success:function(data){
       allrestaurants.push(data);
       displayRestaurants(allrestaurants);
+       $modal.modal('hide');
+       $NameField.val('');
+       $CuisineField.val('');
+       $LocationField.val('');
+       $ServiceTimeField.val('');
+       $PriceRangeField.val('');
+       $OperationHoursField.val('');
     }
   })
 
   })
   $("#results").on('click',".deleteButton",function(){
-    var url='/api/restaurants/'+$(this).attr('data-rest-id');
-    console.log(url);
     $.ajax({
       method: 'delete',
       url: '/api/restaurants/'+$(this).attr('data-rest-id'),
@@ -271,4 +281,75 @@ $(document).ready(function(){
     }
     displayRestaurants(allrestaurants);
   }
+
+  $('#results').on('click', '.editButton', handleRestaurantEditClick);
+  $('#results').on('click', '.save-restaurant', handleRestaurantSaveClick);
+
+  // when the edit button for an restaurant is clicked
+  function handleRestaurantEditClick(e) {
+  var $restRow = $(this).parent().parent();
+  var restId = $restRow.attr('data-rest-id');
+  console.log('restId to edit', restId);
+
+  // show 'Save Changes' button
+  $restRow.find('.save-restaurant').toggleClass('hidden');
+  // hide 'Edit' button
+  $restRow.find('.editButton').toggleClass('hidden');
+
+  // get restaurant name and replace its field with an input element
+  var restaurantName = $restRow.find('span.rest-name').text();
+  console.log(restaurantName);
+  $restRow.find('span.rest-name').html('<p><input class="edit-rest-name" value="' + restaurantName + '"></input></p>');
+
+  var cuisineName = $restRow.find('span.rest-cuisine').text();
+  $restRow.find('span.rest-cuisine').html('<p><input class="edit-cuisine-name" value="' + cuisineName + '"></input></p>');
+
+  var location = $restRow.find('span.rest-location').text();
+  $restRow.find('span.rest-location').html('<p><input class="edit-rest-location" value="' + location + '"></input></p>');
+
+  var restprice = $restRow.find('span.rest-price').text();
+  $restRow.find('span.rest-price').html('<p><input class="edit-restprice" value="' + restprice + '"></input></p>');
+
+  var restservice = $restRow.find('span.rest-service').text();
+  $restRow.find('span.rest-service').html('<p><input class="edit-restservice" value="' + restservice + '"></input></p>');
+
+  var resthours = $restRow.find('span.rest-hours').text();
+  $restRow.find('span.rest-hours').html('<p><input class="edit-resthours" value="' + resthours + '"></input></p>');
+
+}
+function handleRestaurantSaveClick() {
+ var restId = $(this).parent().parent().attr('data-rest-id');
+ var $restRow = $('[data-rest-id=' + restId + ']');
+
+ var data = {
+   name: $restRow.find('.edit-rest-name').val(),
+   cuisine: $restRow.find('.edit-cuisine-name').val(),
+   location: $restRow.find('.edit-rest-location').val(),
+   price_range:$restRow.find('.edit-restprice').val(),
+   OperationHours:$restRow.find('.edit-restservice').val(),
+   serviceTime:$restRow.find('.edit-resthours').val()
+ };
+
+ console.log('PUTing data for restaurant', restId, 'with data', data);
+
+ $.ajax({
+   method: 'put',
+   url: '/api/restaurants/' + restId,
+   data: data,
+   success: handlerestaurantUpdatedResponse
+ });
+}
+function handlerestaurantUpdatedResponse(data) {
+  console.log('response to update', data);
+  var restId = data._id;
+  // remove this restaurant from the page, re-draw with updated data
+  for(i=0;i<allrestaurants.length;i++){
+    if(allrestaurants[i]._id===restId) {
+      allrestaurants.splice(i, 1);
+    }
+  }
+
+  allrestaurants.push(data);
+  displayRestaurants(allrestaurants);
+}
 })
