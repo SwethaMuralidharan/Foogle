@@ -55,9 +55,15 @@ app.post('/api/restaurants/:rest_id/reviews', function (req, res){
   db.Restaurants.findById(req.params.rest_id)
   .exec(function(err,foundrestaurant){
     console.log(req.body);
-    if(err) { console.log(err); }
-    else if(foundrestaurant===null){  res.status(404).json({error:"No restaurant found by this ID"}); }
-    else {    foundrestaurant.reviews.push(req.body); }
+    if(err) {
+      console.log(err);
+    }
+    else if(foundrestaurant===null) {
+      res.status(404).json({error:"No restaurant found by this ID"});
+    }
+    else {
+      foundrestaurant.reviews.push(req.body);
+    }
     foundrestaurant.save();
     res.json(foundrestaurant);
     })
