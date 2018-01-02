@@ -3,7 +3,7 @@
 
 ## Food + Google = Foogle
 
-Users can add and search through a database of restaurants that are reviewed by culinary professionals in this Foogle Site powered by honesty and trust.
+Users can add and search through a database of restaurants that are reviewed by culinary professionals in this Foogle Site powered by honesty and trust. Users can also post their reviews for each restaurant.
 
 **Technologies Used :**
 
