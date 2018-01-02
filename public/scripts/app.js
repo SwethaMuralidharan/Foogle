@@ -46,7 +46,8 @@ $(document).ready(function(){
   })
 
  $("#results").on('click',".edit-review-submit-button",function(){
-     //get values from 2 input tags and concatenate to send data
+     //get values from 2 input tags and concatenate to send data.
+     // tried $(this).serialize(); did not work as expected as it is just a span element.
      let value1="review_text=" +$(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').find("input")[0].value;
      let value2="username=" + $(".col-sm-6").find('[data-review-id="'+$(this).attr('data-review-id')+'"]').find("input")[1].value;
      newvalues=value1+"&"+value2;

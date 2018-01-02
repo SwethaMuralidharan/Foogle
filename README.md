@@ -151,3 +151,9 @@ A signup button and a login button will be located right next to each other in t
 The user clicks the sign-up button then a pop-up window will appear and will prompt the user to create a user name and a password. The credentials will be saved in the database.
 
 A login button will be located next to the sign-up button in the home page. When the user clicks the login button a pop-up window will appear and will prompt the user to key in a user name and a password. If the correct username/password is entered the user can perform all crud operations on the Foogle site.
+
+Three different users to sign up :
+
+One for professionals to post reviews.
+One for users to view the list of restaurants with maximum number of reviews at the top. (They cannot review anymore).
+One for restaurant owners to give only them the privilege to add new restaurant to foogle.(They cannot review anymore).
