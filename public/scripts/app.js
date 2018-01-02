@@ -97,13 +97,14 @@ $(document).ready(function(){
   }
 
   $("#txtSearch").on("input", function() {
-     var value = $("#txtSearch").val().toLowerCase();
-     $("#results > p.restaurant").filter(function() {
-       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-     });
-     if (!this.value) {
-       $("#txtSearch").val('');
-       displayRestaurants(allrestaurants);
+     var searchTerm = this.value.toLowerCase();
+     if (searchTerm) {
+       $("#results > p.restaurant").each(function() {
+         // toggle based on whether text contains the search term
+         $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1)
+       });
+     } else {
+         displayRestaurants(allrestaurants);
      }
   });
 
