@@ -18,21 +18,24 @@ app.get('/api/restaurants',function(req,res){
 })
 
 app.post('/api/restaurants',function(req,res){
-  console.log(JSON.stringify(req.body));
   db.Restaurants.create(req.body, function(err, rest) {
     if (err) { console.log('error occured in create restaurant method', err); }
     res.json(rest);
   });
 })
+
 app.delete('/api/restaurants/:id',function(req,res){
   var restID = req.params.id;
   db.Restaurants.findOneAndRemove({ _id: restID }, function (err, deletedRest) {
     res.json(deletedRest);
   });
 })
+
 app.put('/api/restaurants/:id',function(req, res) {
   db.Restaurants.findById(req.params.id, function(err, foundAlbum) {
-    if (err) { console.log('albumsController.update error', err); }
+    if (err) {
+      console.log('albumsController.update error', err);
+    }
     foundAlbum.location = req.body.location;
     foundAlbum.price_range = req.body.price_range;
     foundAlbum.OperationHours = req.body.OperationHours;
@@ -40,7 +43,9 @@ app.put('/api/restaurants/:id',function(req, res) {
     foundAlbum.name = req.body.name;
     foundAlbum.cuisine = req.body.cuisine;
     foundAlbum.save(function(err, savedAlbum) {
-      if (err) { console.log('saving altered album failed'); }
+      if (err) {
+        console.log('saving altered album failed');
+      }
       res.json(savedAlbum);
     });
   });
