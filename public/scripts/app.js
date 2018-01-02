@@ -19,7 +19,6 @@ $(document).ready(function(){
   })
 
   $("#results").on('submit',".addReviewForm",function(e){
-    console.log($(this).serialize());
     e.preventDefault();
     $.ajax({
       method:'POST',
@@ -241,24 +240,24 @@ $(document).ready(function(){
   };
 
   // POST to SERVER
-  console.log(postData);
   $.ajax({
     method:'POST',
     url:'/api/restaurants',
     data:postData,
-    success:function(data){
-      allrestaurants.push(data);
-      displayRestaurants(allrestaurants);
-       $modal.modal('hide');
-       $NameField.val('');
-       $CuisineField.val('');
-       $LocationField.val('');
-       $ServiceTimeField.val('');
-       $PriceRangeField.val('');
-       $OperationHoursField.val('');
-    }
+    success:handleNewRestaurant
   })
-
+  function handleNewRestaurant(data) {
+     allrestaurants.push(data);
+     displayRestaurants(allrestaurants);
+     //hide modal and clear contents.
+     $modal.modal('hide');
+     $NameField.val('');
+     $CuisineField.val('');
+     $LocationField.val('');
+     $ServiceTimeField.val('');
+     $PriceRangeField.val('');
+     $OperationHoursField.val('');
+  }
   })
   $("#results").on('click',".deleteButton",function(){
     $.ajax({
@@ -289,7 +288,6 @@ $(document).ready(function(){
   function handleRestaurantEditClick(e) {
   var $restRow = $(this).parent().parent();
   var restId = $restRow.attr('data-rest-id');
-  console.log('restId to edit', restId);
 
   // show 'Save Changes' button
   $restRow.find('.save-restaurant').toggleClass('hidden');
@@ -298,7 +296,7 @@ $(document).ready(function(){
 
   // get restaurant name and replace its field with an input element
   var restaurantName = $restRow.find('span.rest-name').text();
-  console.log(restaurantName);
+
   $restRow.find('span.rest-name').html('<p><input class="edit-rest-name" value="' + restaurantName + '"></input></p>');
 
   var cuisineName = $restRow.find('span.rest-cuisine').text();
@@ -330,8 +328,6 @@ function handleRestaurantSaveClick() {
    serviceTime:$restRow.find('.edit-resthours').val()
  };
 
- console.log('PUTing data for restaurant', restId, 'with data', data);
-
  $.ajax({
    method: 'put',
    url: '/api/restaurants/' + restId,
@@ -340,7 +336,6 @@ function handleRestaurantSaveClick() {
  });
 }
 function handlerestaurantUpdatedResponse(data) {
-  console.log('response to update', data);
   var restId = data._id;
   // remove this restaurant from the page, re-draw with updated data
   for(i=0;i<allrestaurants.length;i++){
@@ -348,7 +343,6 @@ function handlerestaurantUpdatedResponse(data) {
       allrestaurants.splice(i, 1);
     }
   }
-
   allrestaurants.push(data);
   displayRestaurants(allrestaurants);
 }
