@@ -304,7 +304,8 @@ $(document).ready(function(){
     $restRow.find('span.rest-hours').html('<p><input class="edit-resthours" value="' + resthours + '"></input></p>');
 }
 
- function handleRestaurantSaveClick() {
+ function handleRestaurantSaveClick(e) {
+   e.preventDefault();
    var restId = $(this).parent().parent().attr('data-rest-id');
    var $restRow = $('[data-rest-id=' + restId + ']');
    var data = {
