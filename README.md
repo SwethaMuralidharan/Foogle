@@ -3,7 +3,7 @@
 
 ## Food + Google = Foogle
 
-Users can search through a database of restaurants that are reviewed by culinary professionals in this Foogle Site powered by honesty and trust.
+Users can add and search through a database of restaurants that are reviewed by culinary professionals in this Foogle Site powered by honesty and trust.
 
 **Technologies Used :**
 
@@ -105,17 +105,39 @@ Emptying this search bar will display all restaurants.
 
 **SPRINT 7:**
 
-**SEARCH BY MENU ITEM**
+**ADD NEW RESTAURANT**
 
-There will be a dropdown menu where the user can also now search by menu item.
+There will be a button with a plus sign next to the search bars for adding new restaurant information.
 
 *Story:*
 
-The user decides to search by menu item, a text box appears below the dropdown menu where they can key in a specific menu item (ex pizza, taco, burger, ice cream etc). Once they key in the menu item a list of restaurants which serve that menu item are displayed below the text box.
-All other restaurants and its details are hidden.
-
+When the user clicks on the add new restaurant button, a modal window opens up in front of the page prompting the user to enter the information of new restaurant. At the bottom of the modal, there will be Close and Save Changes buttons. Once the user is sure of the data that he/she enters, he should click Save Changes button to add this to the database. And the modal gets hidden. New restaurant information gets added as last entry in the page.
 
 **SPRINT 8:**
+
+**DELETE RESTAURANT**
+
+There will be a delete button with a bin icon inside each of the restaurant accordion.
+
+*Story:*
+
+When the user clicks this button, that restaurant gets deleted from db and page.
+
+
+**SPRINT 9:**
+
+**UPDATE RESTAURANT**
+
+There will be a update button with a pencil icon inside each of the restaurant accordion.
+
+*Story:*
+
+When the user clicks this button, pencil icon gets hidden. New Save Changes button appears at the bottom of its accordion.
+And each of the restaurant property value gets displayed in a editable text box. User can change values and click Save Changes. Data gets updated and displayed as last entry.
+
+
+
+**SPRINT 10:**
 
 **ADDING A SIGN UP & LOGIN**
 
