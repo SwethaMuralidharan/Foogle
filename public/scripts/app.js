@@ -96,7 +96,7 @@ $(document).ready(function(){
      $('#results').find('[data-rest-id="' + restId + '"]').fadeIn();// shows selected restaurant
   }
 
-  $("#txtSearch").on("keyup", function() {
+  $("#txtSearch").on("input", function() {
      var value = $("#txtSearch").val().toLowerCase();
      $("#results > p.restaurant").filter(function() {
        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
