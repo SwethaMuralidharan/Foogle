@@ -10,6 +10,9 @@ Users can add and search through a database of restaurants that are reviewed by 
 
 HTML,CSS,JavaScript,JQuery,Ajax,BootStrap,MongoDb
 
+
+## Existing Features
+
 **SPRINT 0:**
 
 **SERVER & FILE STRUCTURE SETUP**
@@ -135,7 +138,7 @@ There will be a update button with a pencil icon inside each of the restaurant a
 When the user clicks this button, pencil icon gets hidden. New Save Changes button appears at the bottom of its accordion.
 And each of the restaurant property value gets displayed in a editable text box. User can change values and click Save Changes. Data gets updated and displayed as last entry.
 
-
+## Planned Features
 
 **SPRINT 10:**
 
