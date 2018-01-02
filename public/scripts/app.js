@@ -150,7 +150,18 @@ $(document).ready(function(){
        method:'POST',
        url:'/api/restaurants',
        data:postData,
-       success:handleNewRestaurant,
+       success:function(data) {
+            allrestaurants.push(data);
+            displayRestaurants(allrestaurants);
+            //hide modal and clear contents.
+            $("#NewModal").modal('hide');
+            $NameField.val('');
+            $CuisineField.val('');
+            $LocationField.val('');
+            $ServiceTimeField.val('');
+            $PriceRangeField.val('');
+            $OperationHoursField.val('');
+       },
        error:function(err){
          console.log("Error in Saving Restaurant",err);
        }
@@ -250,19 +261,6 @@ $(document).ready(function(){
   function handleSuccess(json) {
     allrestaurants = json;
     displayRestaurants(allrestaurants);
-  }
-
-  function handleNewRestaurant(data) {
-     allrestaurants.push(data);
-     displayRestaurants(allrestaurants);
-     //hide modal and clear contents.
-     $modal.modal('hide');
-     $NameField.val('');
-     $CuisineField.val('');
-     $LocationField.val('');
-     $ServiceTimeField.val('');
-     $PriceRangeField.val('');
-     $OperationHoursField.val('');
   }
 
   function deleteRestaurantSuccess(json) {
