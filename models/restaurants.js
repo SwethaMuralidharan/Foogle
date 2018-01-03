@@ -6,10 +6,11 @@ var reviews=require('./reviews.js');
 var restaurantsSchema = new Schema({
   name: String,
   location:String,
-  price_range: String,
+  // The huge variety of casing here is sad
+  priceRange: String,
   serviceTime:String,
   cuisine:String,
-  OperationHours:[ String ],
+  operationHours:[ String ],
   reviews: [ reviews.schema ],
 });
 var Restaurants = mongoose.model('Restaurants', restaurantsSchema);

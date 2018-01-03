@@ -33,21 +33,11 @@
             <div class="col-md-4">
                     <div class="input-group">
                       <input type="text" class="form-control" placeholder="Search by Name" id="txtSearch"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-primary" type="button" id="txtSearchbyName">
-                          <span class="glyphicon glyphicon-search">  Search  </span>
-                        </button>
-                      </div>
                     </div>
             </div>
             <div class="col-md-4">
                     <div class="input-group">
                       <input type="text" class="form-control" placeholder="Search by Cuisine" id="cuisineSearch"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit" id="txtSearchbyCuisine">
-                          <span class="glyphicon glyphicon-search"> Search </span>
-                        </button>
-                      </div>
                     </div>
             </div>
             <div class="col-md-4">
@@ -98,7 +88,8 @@
 
               <!-- Text input-->
               <div class="form-group">
-                <label class="col-md-4 control-label" for="ServiceTime">ServiceTime</label>
+                <!-- You should display these labels with spaces, like people read, not with the same spacing as in your database. -->
+                <label class="col-md-4 control-label" for="ServiceTime">Service Time</label>
                 <div class="col-md-4">
                   <input id="ServiceTime" name="ServiceTime" type="text" placeholder="Enter in minutes" class="form-control input-md" required>
                 </div>
@@ -106,7 +97,7 @@
 
               <!-- Text input-->
               <div class="form-group">
-                <label class="col-md-4 control-label" for="PriceRange">PriceRange</label>
+                <label class="col-md-4 control-label" for="PriceRange">Price Range</label>
                 <div class="col-md-4">
                   <input id="PriceRange" name="PriceRange" type="text" placeholder="ex: Cheap/Moderate/Expensive" class="form-control input-md" required>
                 </div>
@@ -114,7 +105,7 @@
 
               <!-- Text input-->
               <div class="form-group">
-                <label class="col-md-4 control-label" for="OperationHours">OperationHours</label>
+                <label class="col-md-4 control-label" for="OperationHours">Hours of Operation</label>
                 <div class="col-md-4">
                   <input id="OperationHours" name="OperationHours" type="text" placeholder="ex: Mon-Sat:10am-6pm" class="form-control input-md" required>
                 </div>

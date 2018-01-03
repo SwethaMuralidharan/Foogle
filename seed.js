@@ -1,5 +1,6 @@
 var db = require('./models');
 
+// so much snake_case instead of camelCase
 var restaurants_list = [
     {
     name: "Gary Danko",
